@@ -3,10 +3,10 @@ from typing import Dict, Union
 
 
 def connect_dicts(dict_one: Dict[str, Union[int, float]],
-                  dict_two: Dict[str, Union[int, float]]) -> dict:
+                  dict_two: Dict[str, Union[int, float]]) -> Union[dict, str]:
 
     if not is_input_valid(dict_one, dict_two):
-        return is_input_valid(dict_one, dict_two)
+        return "Invalid input!"
 
     if sum(dict_one.values()) == sum(dict_two.values()) or \
             sum(dict_one.values()) < sum(dict_two.values()):
@@ -25,15 +25,15 @@ def connect_dicts(dict_one: Dict[str, Union[int, float]],
 
 def is_input_valid(data_one, data_two) -> bool:
     if not isinstance(data_one, dict) or not isinstance(data_two, dict):
-        return TypeError("Arguments should be of 'dict' type!")
+        return False
 
     if not all([isinstance(value, (int, float)) for value in data_one.values()]) or \
             not all([isinstance(value, (int, float)) for value in data_two.values()]):
-        return TypeError("Values in dicts should be of type 'int' or 'float'!")
+        return False
 
     if not all([isinstance(key, str) for key in data_one.keys()]) or \
             not all([isinstance(key, str) for key in data_two.keys()]):
-        return TypeError("Keys in dicts should be of type 'str'!")
+        return False
 
     return True
 
