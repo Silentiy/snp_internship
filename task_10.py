@@ -2,6 +2,8 @@ import string
 
 
 def count_words(string_data: str) -> dict:
+    """ Returns dict with a number of usages of each word in a given string """
+
     if not isinstance(string_data, str):
         raise ValueError("You have to provide string as input!")
 
@@ -16,9 +18,16 @@ def count_words(string_data: str) -> dict:
 
 test_data = [
     "A man, a plan, a canal -- Panama",
-    "Doo bee doo bee doo"
+    "Doo bee doo bee doo",
+    111111,
+    ["a", "b", 22]
     ]
 
 if __name__ == "__main__":
     for test_string in test_data:
-        print(count_words(test_string))
+        try:
+            print(count_words(test_string))
+        except Exception as e:
+            print(e)
+            continue
+

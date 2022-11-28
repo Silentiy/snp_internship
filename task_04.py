@@ -1,12 +1,23 @@
-def sort_list(list_data: list) -> list:
+from typing import List
+
+
+def sort_list(list_data: List[int]) -> List[int]:
+    """ In the given list of integers changes min values to max values and vise versa.
+     Filters list from data of any type except integer if provided input is messed """
+
+    if not isinstance(list_data, list):
+        raise TypeError("Please, provide a data of 'list' type for input!")
+
     if not list_data:
         return []
 
-    sorted_list = list()
-    max_number = max(list_data)
-    min_number = min(list_data)
+    numbers_list = [x for x in list_data if type(x) in (int, )]
 
-    for num in list_data:
+    sorted_list = list()
+    max_number = max(numbers_list)
+    min_number = min(numbers_list)
+
+    for num in numbers_list:
         if num == max_number:
             sorted_list.append(min_number)
         elif num == min_number:
@@ -22,9 +33,16 @@ test_data = [
     [],
     [2, 4, 6, 8],
     [1],
-    [1, 2, 1, 3]
+    [1, 2, 1, 3],
+    True,
+    ["a", True, False, 11, 12, 11, 12],
+    ["a", None, False, range(5), 1.1, 12, 1.1, 12]
 ]
 
 if __name__ == "__main__":
     for arr in test_data:
-        print(sort_list(arr))
+        try:
+            print(sort_list(arr))
+        except Exception as e:
+            print(e)
+            continue

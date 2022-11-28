@@ -1,19 +1,34 @@
 # May the dicts be with us (C)
+import string
 from typing import List
 
 
 def combine_anagrams(words_array: List[str]) -> List[List[str]]:
+    """ Returns list with groups (lists) of anagrams (if any) for every word
+    in the original list. If no anagrams for a word - returns group (list)
+    containing solely this word """
+
+    # data sanity check
+    if not isinstance(words_array, list):
+        raise TypeError("Please, provide a list for an input!")
+
+    if not all([isinstance(word, str) for word in words_array]):
+        raise TypeError("Every element of the given list has to be of 'str' type!")
+
+    BANNED_WORDS = [" ", "", ]
+
     anagrams_result = list()
     words_dict = dict()
-    banned_words = [" "]
     cleaned_words = list()
 
     # little clean up
     for word in words_array:
-        if word not in banned_words:
-            word = word.lower().strip()
-            single_words = word.split()
-            word = " ".join(single_words)
+        word = word.lower().strip().translate(str.maketrans('', '',
+                                                            string.punctuation))
+        word = word.translate(str.maketrans('', '', string.digits))
+        single_words = word.split()
+        word = " ".join(single_words)
+        if word not in BANNED_WORDS:
             cleaned_words.append(word)
     cleaned_words = list(dict.fromkeys(cleaned_words))
 
@@ -42,17 +57,22 @@ def combine_anagrams(words_array: List[str]) -> List[List[str]]:
     return anagrams_result
 
 
-test_data = [["cars ", "for", "for", "for", " potatoes", "racs", "four", "scar",
-              "creams", "scream", "carcass"],
+test_data = [["cars, ", "for", "for", "for", " potatoes!", "racs?", "four", "scar",
+              "creams11", "scream", "carcass"],
              ["a Gentleman  ", "bicycle", "twelve plus one", " ", "vile",
               "elegant  Man", "evil", "New    Year", "villain",
               "eleven plus two", "ubiquitous", "home"],
              ["forty five", "computer", "restful", "desc", "Santa",
-              "fluster", "Python", "teacher",  "funeral", "scraper",
+              "fluster", "Python", "teacher", "funeral", "scraper",
               "adultery", "cheater", "true lady", "over fifty",
-              "satan", "real fun", "Ladybug"]
+              "satan", "real fun", "Ladybug", "22"],
+             ["list", 1, "with", True, "bad", None, "data", 11.1]
              ]
 
 if __name__ == "__main__":
     for data in test_data:
-        print(combine_anagrams(data))
+        try:
+            print(combine_anagrams(data))
+        except Exception as e:
+            print(e)
+            continue

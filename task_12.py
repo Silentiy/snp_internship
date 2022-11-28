@@ -3,6 +3,7 @@ from task_11 import Dessert
 
 
 class JellyBean(Dessert):
+    """ Class for JellyBean dessert. Has flavor attribute """
 
     _SPECIAL_TASTES = ["black licorice"]
 
@@ -35,5 +36,6 @@ class JellyBean(Dessert):
         return f"Dessert '{self.name}' has '{self.calories}' calories in it and '{self.flavor}' flavor"
 
 
-j_bean = JellyBean("dessert_Name", 122, "dessert_Taste")
-print(j_bean, j_bean.is_healthy(), j_bean.is_delicious())
+if __name__ == "__main__":
+    j_bean = JellyBean("dessert_Name", 122, "dessert_Taste")
+    print(j_bean, j_bean.name, j_bean.calories, j_bean.is_healthy(), j_bean.is_delicious())

@@ -1,5 +1,6 @@
 class Dessert:
-    """ Class for storing dessert objects with name and calories """
+    """ Class for storing dessert's name and calories
+     Has methods to check whether dessert is delicious and healthy """
 
     _CALORIES_LIMIT = 200
 
@@ -15,7 +16,7 @@ class Dessert:
 
     @staticmethod
     def __is_calories_of_type_int_or_float(calories):
-        return isinstance(calories, (int, float))
+        return type(calories) in (int, float)
 
     @staticmethod
     def __is_calories_greater_zero(calories):
@@ -53,7 +54,7 @@ class Dessert:
         return f"Dessert '{self.name}' has '{self.calories}' calories in it"
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     des = Dessert()
     des.name = "icecream"
     des.calories = 199

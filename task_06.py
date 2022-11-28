@@ -32,7 +32,7 @@ def rps_game_winner(players_actions: List[List[str]]) -> str:
 
     if not isinstance(player_one, list) or \
             not isinstance(player_two, list):
-        raise TypeError("Player's name and action should be given in list!")
+        raise TypeError("Player's name and action should be given in a list!")
 
     if len(player_one) != 2 or len(player_two) != 2:
         raise PlayerDataFormatError("Player's list should include exactly"
