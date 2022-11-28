@@ -6,7 +6,10 @@ def max_odd(array: list) -> Union[int, float, None]:
     if not array:
         return None
 
-    flat_array = unpack(array)
+    if not isinstance(array, list):
+        raise TypeError("Please, provide a data of 'list' type for input!")
+
+    flat_array = unpack_list_into_flat_list(array)
 
     odd_numbers = [x for x in flat_array if isinstance(x, (float, int)) and is_odd(x)]
 
@@ -15,7 +18,7 @@ def max_odd(array: list) -> Union[int, float, None]:
     return max(odd_numbers)
 
 
-def unpack(list_data: list) -> list:
+def unpack_list_into_flat_list(list_data: list) -> list:
     unpacked = list()
     to_unpack = deque()
     to_unpack += list_data
@@ -49,4 +52,8 @@ test_data = [
 
 if __name__ == "__main__":
     for arr in test_data:
-        print(max_odd(arr))
+        try:
+            print(max_odd(arr))
+        except Exception as e:
+            print(e)
+            continue
