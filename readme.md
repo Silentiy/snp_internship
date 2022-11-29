@@ -1,0 +1,1 @@
+Solutions for base tasks of Salt&Pepper internship
