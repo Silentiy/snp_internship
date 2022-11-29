@@ -8,12 +8,12 @@ def multiply_numbers(inputs) -> Union[None, int]:
     If no digits in input were found returns None.
     Function will use values of given dictionaries and
     will unpack numbers from range. In other cases will try
-    to get str representation of an object (quits if it failed) """
+    to get str() representation of an object (quits if it failed) """
 
     if isinstance(inputs, dict):
-        line = str(inputs.values())
+        line = " ".join([str(el) for el in inputs.values()])
     elif isinstance(inputs, range):
-        line = " ".join([str(num) for num in list(inputs)])
+        line = " ".join([str(el) for el in list(inputs)])
     else:
         try:
             line = str(inputs)
@@ -33,11 +33,16 @@ def multiply_numbers(inputs) -> Union[None, int]:
     return product
 
 
-class NoStrReprClass:
-    a = 1
+class BadStrReprClass:
+
+    def __str__(self):
+        raise Exception("An arrow to the knee")
+
+    def __repr__(self):
+        raise Exception("An arrow to the second knee")
 
 
-no_str_repr = NoStrReprClass()
+no_str_repr = BadStrReprClass()
 
 test_data = [
             None,
@@ -57,7 +62,7 @@ test_data = [
 if __name__ == "__main__":
     for data in test_data:
         try:
-            print(multiply_numbers(data))
+            print(data, "# =>", multiply_numbers(data))
         except Exception as e:
             print(e)
             continue

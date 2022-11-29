@@ -1,4 +1,3 @@
-# May the dicts be with us (C)
 import string
 from typing import List
 
@@ -6,7 +5,7 @@ from typing import List
 def combine_anagrams(words_array: List[str]) -> List[List[str]]:
     """ Returns list with groups (lists) of anagrams (if any) for every word
     in the original list. If no anagrams for a word - returns group (list)
-    containing solely this word """
+    containing solely this word. Neglects font case, punctuation and digits """
 
     # data sanity check
     if not isinstance(words_array, list):
@@ -30,6 +29,7 @@ def combine_anagrams(words_array: List[str]) -> List[List[str]]:
         word = " ".join(single_words)
         if word not in BANNED_WORDS:
             cleaned_words.append(word)
+    # delete duplicates
     cleaned_words = list(dict.fromkeys(cleaned_words))
 
     # letters histograms for every given word
@@ -40,7 +40,7 @@ def combine_anagrams(words_array: List[str]) -> List[List[str]]:
                 continue
             words_dict[word][letter] = words_dict[word].get(letter, 0) + 1
 
-    # combine anagrams (pop items directly from words_dict?)
+    # combine anagrams
     while cleaned_words:
         combined_anagrams = list()
         main_word = cleaned_words.pop(0)
@@ -65,14 +65,14 @@ test_data = [["cars, ", "for", "for", "for", " potatoes!", "racs?", "four", "sca
              ["forty five", "computer", "restful", "desc", "Santa",
               "fluster", "Python", "teacher", "funeral", "scraper",
               "adultery", "cheater", "true lady", "over fifty",
-              "satan", "real fun", "Ladybug", "22"],
+              "satan", "real fun", "Ladybug", "22", " "],
              ["list", 1, "with", True, "bad", None, "data", 11.1]
              ]
 
 if __name__ == "__main__":
     for data in test_data:
         try:
-            print(combine_anagrams(data))
+            print(data, "# => \n", combine_anagrams(data))
         except Exception as e:
             print(e)
             continue

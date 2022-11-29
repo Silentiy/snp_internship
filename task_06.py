@@ -10,7 +10,7 @@ class NoSuchStrategyError(Exception):
 
 
 class PlayerDataFormatError(Exception):
-    """ Player's data include more or less elements, than name and action  """
+    """ Player's data include more or less elements, than 'name' and 'action'  """
 
 
 ALLOWED_ACTIONS = ("P", "R", "S")
@@ -77,13 +77,14 @@ def define_winning_action_index(actions: List[str]) -> int:
 
 
 test_data = [
+    "Wrong data",
     [['player1', 'P'], ['player2', 'S'], ['player3', 'S']],
+    ['ISILDUR, P', ['player2', "S"]],
+    [['player1', 'P', 'R'], ['player2', 2]],
+    [[1, 'P'], ['player2', "R"]],
     [['player1', 'P'], ['player2', 'A']],
     [['player1', 'P'], ['player2', 'S']],
     [['player1', 'P'], ['player2', 'P']],
-    [['player1', 'P'], ['player2', 2]],
-    [[1, 'P'], ['player2', "R"]],
-    ['ISILDUR, P', ['player2', "S"]],
     [['Bob', 'R'], ['Alice', 'P']],
     [['Bob', 'R'], ['Alice', 'S']],
     ]
@@ -91,7 +92,7 @@ test_data = [
 if __name__ == "__main__":
     for data in test_data:
         try:
-            print(rps_game_winner(data))
+            print(data, "# =>", rps_game_winner(data))
         except Exception as e:
             print(e)
             continue

@@ -4,12 +4,12 @@ from typing import Dict, Union
 
 def connect_dicts(dict_one: Dict[str, Union[int, float]],
                   dict_two: Dict[str, Union[int, float]]) -> Union[dict, str]:
-    """ Connects two given dicts using the follow rules:
+    """ Connects two given dicts using the following rules:
     - keys of a dict that has bigger sum of its values have priority;
     - if both dicts have equal sum of their values, second dict keys' get priority;
     - keys with corresponding values lesser than 10 are neglected;
     - resulting dict returns being sorted by its' values.
-    Keys of input dicts have to be of 'str' type and values of 'int' or 'float' type.
+    Keys of the input dicts have to be of 'str' type and values of 'int' or 'float' type.
     If other types are given as keys and/or values,
     returns 'Invalid input' message """
 
@@ -51,18 +51,21 @@ def is_input_valid(data_one, data_two) -> bool:
     return True
 
 
-test_data = [({"a": 2, "b": 12}, {"c": 11, "e": 5}),
-             ({"a": 13, "b": 9, "d": 11}, {"c": 12, "a": 15}),
-             ({"a": 14, "b": 12}, {"c": 11, "a": 15}),
-             ({"a": 14, "b": 12}, {"c": 11, "a": "15"}),
-             ({"a": 15, "b": 12}, {"c": 12, "a": 15}),
-             ({"a": 10, "b": 9}, {"c": 9, "a": 15})
-             ]
+test_data = [
+    ({"a": 11, "b": 12}, (13, 14)),
+    ({"a": 14, "b": 12}, {"c": 11, "a": "15"}),
+    ({("a", ): 2, "b": 12}, {"c": 11, "e": 5}),
+    ({"a": 2, "b": 12}, {"c": 11, "e": 5}),
+    ({"a": 13, "b": 9, "d": 11}, {"c": 12, "a": 15}),
+    ({"a": 14, "b": 12}, {"c": 11, "a": 15}),
+    ({"a": 15, "b": 12}, {"c": 12, "a": 15}),
+    ({"a": 10, "b": 9}, {"c": 9, "a": 15})
+]
 
 if __name__ == "__main__":
     for data in test_data:
         try:
-            print(connect_dicts(data[0], data[1]))
+            print(data, "# =>", connect_dicts(data[0], data[1]))
         except TypeError as e:
             print(e)
             continue

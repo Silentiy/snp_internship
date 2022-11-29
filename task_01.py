@@ -2,19 +2,15 @@ import string
 
 
 def is_palindrome(string_data: str) -> bool:
-    """ Checks if a given string is palindrome.
-    Font case, spaces and punctuation are neglected """
+    """ Casts given data into a string using str() method
+     (quits execution if error). Checks if the string is a palindrome.
+     Font case, spaces and punctuation are neglected """
 
-    if not type(string_data) in (list, tuple, set, dict, str, bool, int, float):
-        raise TypeError("Incorrect data type! Please,"
-                        " provide a string for input of the function!")
-
-    if isinstance(string_data, (list, tuple, set)):
-        casted_string = " ".join([str(data) for data in string_data])
-    elif isinstance(string_data, dict):
-        casted_string = " ".join([str(data) for data in string_data.values()])
-    else:
+    try:
         casted_string = str(string_data)
+    except Exception as exc:
+        print(exc)
+        quit()
 
     lower_case_string = casted_string.strip().lower()
     no_punctuation_string = lower_case_string.translate(str.maketrans('', '',
@@ -24,17 +20,20 @@ def is_palindrome(string_data: str) -> bool:
 
 
 test_strings = [
-    "A man, a plan, a canal -- Panama", "Madam, I'm Adam!",
+    "A man, a plan, a canal -- Panama",
+    "Madam,   I'm Adam!",
     333,
     122.221,
     None,
     [True, False, "eslaF", "eurT"],
     {"a", "b"},
-    {"a", "b", "a", 22, None, True},
+    {"a", "b", 22, None, True},
     {"a": 11, "b": 11, "c": 11},
     (1, "a", "b", "a", 1),
     "Abracadabra",
-    range(1, 12)
+    bytes(11),
+    range(1, 12),
+    u'\xed'
 ]
 
 if __name__ == "__main__":

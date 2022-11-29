@@ -51,14 +51,14 @@ class Dessert:
         return True
 
     def __str__(self):
-        return f"Dessert '{self.name}' has '{self.calories}' calories in it"
+        return f"Dessert '{self.name}' has '{self.calories}' calories in it."
 
 
 if __name__ == "__main__":
     des = Dessert()
     des.name = "icecream"
     des.calories = 199
-    des_2 = Dessert("cream", 202)
+    des_2 = Dessert("cheesecake", 202)
 
-    print(des.name, des.calories)
-    print(des.name, des.calories, des_2, des_2.is_healthy(), des_2.is_delicious())
+    print("Dessert name:", des.name, "Calories:", des.calories)
+    print(des_2, "Is healthy:", des_2.is_healthy(), "Is delicious:", des_2.is_delicious())

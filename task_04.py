@@ -42,7 +42,7 @@ test_data = [
 if __name__ == "__main__":
     for arr in test_data:
         try:
-            print(sort_list(arr))
+            print(arr, "# =>", sort_list(arr))
         except Exception as e:
             print(e)
             continue

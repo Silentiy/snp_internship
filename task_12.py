@@ -5,7 +5,7 @@ from task_11 import Dessert
 class JellyBean(Dessert):
     """ Class for JellyBean dessert. Has flavor attribute """
 
-    _SPECIAL_TASTES = ["black licorice"]
+    _SPECIAL_TASTES = ["black licorice", ]
 
     def __init__(self, name: str = "dessert_name",
                  calories: Union[float, int] = 0,
@@ -33,9 +33,17 @@ class JellyBean(Dessert):
         return True
 
     def __str__(self):
-        return f"Dessert '{self.name}' has '{self.calories}' calories in it and '{self.flavor}' flavor"
+        return f"Dessert '{self.name}' has '{self.calories}' calories in it and '{self.flavor}' flavor."
 
 
 if __name__ == "__main__":
-    j_bean = JellyBean("dessert_Name", 122, "dessert_Taste")
-    print(j_bean, j_bean.name, j_bean.calories, j_bean.is_healthy(), j_bean.is_delicious())
+    j_bean = JellyBean("jelly bean", 200, "pistachio")
+    print("Name:", j_bean.name, "Calories:", j_bean.calories,
+          "Is healthy:", j_bean.is_healthy(), "Is delicious", j_bean.is_delicious())
+
+    j_bean_licorice = JellyBean()
+    j_bean_licorice.name = "jelly bean licorice"
+    j_bean_licorice.calories = 201
+    j_bean_licorice.flavor = "black licorice"
+    print(j_bean_licorice, "Is healthy:", j_bean_licorice.is_healthy(),
+          "Is delicious", j_bean_licorice.is_delicious())

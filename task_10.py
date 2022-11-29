@@ -2,7 +2,8 @@ import string
 
 
 def count_words(string_data: str) -> dict:
-    """ Returns dict with a number of usages of each word in a given string """
+    """ Returns dict with a number of usages of each word in a given string.
+     Ignores punctuation """
 
     if not isinstance(string_data, str):
         raise ValueError("You have to provide string as input!")
@@ -26,7 +27,7 @@ test_data = [
 if __name__ == "__main__":
     for test_string in test_data:
         try:
-            print(count_words(test_string))
+            print(test_string, "# =>", count_words(test_string))
         except Exception as e:
             print(e)
             continue

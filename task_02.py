@@ -1,6 +1,6 @@
 def coincidence(list_data: list = None, range_data: range = None) -> list:
-    """ Returns a list of numeric elements from the given list such that
-     numbers are in the given range """
+    """ Returns a list of numeric elements from the given list that
+     are in the given range """
 
     if list_data is None or range_data is None:
         return []
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     print(coincidence())
     for data in test_data:
         try:
-            print(coincidence(data[0], data[1]))
+            print(data, "# =>", coincidence(data[0], data[1]))
         except Exception as e:
             print(e)
             continue
