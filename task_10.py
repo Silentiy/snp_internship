@@ -6,7 +6,7 @@ def count_words(string_data: str) -> dict:
      Ignores punctuation """
 
     if not isinstance(string_data, str):
-        raise ValueError("You have to provide string as input!")
+        raise TypeError("You have to provide string as input!")
 
     histogram = dict()
     cleared_string = string_data.strip().lower().translate(str.maketrans('', '', string.punctuation))

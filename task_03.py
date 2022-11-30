@@ -23,9 +23,8 @@ def max_odd(array: list) -> Union[int, float, None]:
 
 def unpack_list_into_flat_list(list_data: list) -> list:
     """ 'Unpacks' given list i.e. grabs nested elements
-     and appends their atomic values into resulting list.
-     Supports only 'list', 'tuple', 'set', 'dict', 'str',
-     'bool', 'int', 'float' and 'range' data types and ignores others """
+     and appends their values into resulting list.
+     Supports different data types. Preserve strings unpacked. """
 
     unpacked = list()
     to_unpack = deque()
@@ -33,16 +32,12 @@ def unpack_list_into_flat_list(list_data: list) -> list:
 
     while to_unpack:
         element = to_unpack.popleft()
-        if not type(element) in (list, tuple, set, dict, str, bool, int, float, range):
-            continue
-        if isinstance(element, (list, tuple, set)):
+        if type(element) not in (str, dict) and is_iterable(element):
             for elem in element:
                 to_unpack.append(elem)
         elif isinstance(element,  dict):
             for key, value in element.items():
                 to_unpack.append(value)
-        elif isinstance(element, range):
-            to_unpack.append(list(element))
         else:
             unpacked.append(element)
     return unpacked
@@ -50,6 +45,14 @@ def unpack_list_into_flat_list(list_data: list) -> list:
 
 def is_odd(number: Union[int, float]) -> bool:
     return number % 2 != 0
+
+
+def is_iterable(data) -> bool:
+    try:
+        data_iterator = iter(data)
+        return True
+    except Exception:
+        return False
 
 
 test_data = [

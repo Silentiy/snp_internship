@@ -2,13 +2,16 @@ import re
 from typing import Union
 
 
-def multiply_numbers(inputs) -> Union[None, int]:
+def multiply_numbers(inputs=None) -> Union[None, int]:
     """ Finds digits in the given input and returns
     the product of their multiplication.
     If no digits in input were found returns None.
     Function will use values of given dictionaries and
     will unpack numbers from range. In other cases will try
     to get str() representation of an object (quits if it failed) """
+
+    if inputs is None:
+        return None
 
     if isinstance(inputs, dict):
         line = " ".join([str(el) for el in inputs.values()])
@@ -36,10 +39,10 @@ def multiply_numbers(inputs) -> Union[None, int]:
 class BadStrReprClass:
 
     def __str__(self):
-        raise Exception("An arrow to the knee")
+        raise Exception("An arrow to the second knee")
 
     def __repr__(self):
-        raise Exception("An arrow to the second knee")
+        raise Exception("An arrow to the knee")
 
 
 no_str_repr = BadStrReprClass()

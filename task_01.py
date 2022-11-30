@@ -1,7 +1,7 @@
 import string
 
 
-def is_palindrome(string_data: str) -> bool:
+def is_palindrome(string_data: str = "") -> bool:
     """ Casts given data into a string using str() method
      (quits execution if error). Checks if the string is a palindrome.
      Font case, spaces and punctuation are neglected """
